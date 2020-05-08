@@ -81,6 +81,7 @@ public function login(Request $request)
          $account=new Account();
          $account->email= $user->email;
          $account->customerId=$user->customerId;
+         $account->amount=0;
          $account->save();
        
          // Create a new Pickup entry

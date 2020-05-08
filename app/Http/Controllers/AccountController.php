@@ -22,9 +22,10 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function checkBalance($id)
     {
-        //
+        $account=Account::find($id,['amount']);
+        return response()->json($account);
     }
 
     /**
@@ -33,9 +34,16 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function withDraw(Request $request,$id)
     {
-        //
+      
+       $account=Account::find($id);
+       $account->amount=(intval($account->amount)+intval($request->get('amount')));
+       $account->save();
+       $account=$account->amount;
+        return response()->json($account);
+  
+        
     }
 
     /**

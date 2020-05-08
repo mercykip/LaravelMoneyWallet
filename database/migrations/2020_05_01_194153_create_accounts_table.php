@@ -12,10 +12,10 @@ class CreateAccountsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { if(!Schema::hasTable('accounts')){
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('accountId');
-            $table->double('amount', 8, 2)->default(0);
+            $table->integer('amount')->nullable();
             $table->float('charges', 8, 2)->nullable();
             $table->float('tax', 8, 2)->nullable();
             $table->string('email')->unique();
@@ -23,6 +23,7 @@ class CreateAccountsTable extends Migration
             $table->foreign('customerId')->references('customerId')->on('users')->onDelete('set null');
             $table->timestamps();
         });
+    }
     }
 
     /**
