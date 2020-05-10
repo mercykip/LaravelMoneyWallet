@@ -17,4 +17,7 @@ class Account extends Model
     public function user(){
     	return $this->belongsTo(User::class,'customerId');
     }
+    public function transaction(){
+        return $this->hasOne(Transaction::class);
+    }
 }

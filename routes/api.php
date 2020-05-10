@@ -23,8 +23,12 @@ Route::put('update/{id}','ApiController@upateUsers');
 Route::delete('delete/{id}','ApiController@destroy');
 Route::get('view','ApiController@users');
 Route::get('view/{id}','ApiController@user');
+
 Route::get('checkBalance/{id}','AccountController@checkBalance');
-Route::put('withDraw/{id}','AccountController@withDraw');
+Route::put('withdraw/{id}','AccountController@withDraw');
+Route::put('transfer/{id}','AccountController@fundTransfer');
+Route::put('deposit/{id}','AccountController@fundDeposit');
+Route::get('date','TransactionController@date');
 Route::group(['middleware'=>'auth.jwt'], function () {
     Route::get('logout','ApiController@logout');
 
